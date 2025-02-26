@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AI AGENTS AUTOMATION</title>
+    <link rel="icon" type="image/jpeg" href="https://i.imgur.com/cS1sOWJ.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0078D4;
+            --primary-hover: #106EBE;
+            --secondary-color: #2B579A;
+            --accent-color: #FFB900;
+            --light-gray: #f3f3f3;
+            --dark-gray: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header styles */
+        .header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 300% 300%;
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: headerGradient 10s ease infinite;
+        }
+        
+        @keyframes headerGradient {
+            0% {background-position: 0% 50%}
+            50% {background-position: 100% 50%}
+            100% {background-position: 0% 50%}
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .footer-brand-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--accent-color);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+            letter-spacing: 1px;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 30px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 30px auto;
+            max-width: 1200px;
+            width: 90%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Video container styles */
+        .video-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .video-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .responsive-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .responsive-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Tabs navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .tab-button {
+            padding: 12px 25px;
+            border: none;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .tab-button:hover::before, .tab-button.active::before {
+            opacity: 1;
+        }
+
+        .tab-button:hover, .tab-button.active {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .tab-button:active {
+            transform: translateY(0);
+        }
+
+        .tab-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Iframe container */
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .iframe-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: var(--transition);
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 5;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 120, 212, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .iframe-container {
+                height: 500px;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tab-button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .tab-icon {
+                font-size: 1rem;
+            }
+
+            .iframe-container {
+                height: 450px;
+                overflow-x: hidden;
+            }
+            
+            .main-content {
+                width: 95%;
+                padding: 20px 0;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .responsive-video {
+                padding-bottom: 62%; /* Slightly larger aspect ratio for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="AI Agents Automation Logo" class="brand-logo">
+                    <div class="logo-text">QUÀ TẶNG AI AGENTS AUTOMATION</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Video demo section -->
+            <div class="video-container">
+                <h3 class="video-title">Video Demo</h3>
+                <div class="responsive-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5Bse9MkNy9A?autoplay=1&loop=1&playlist=5Bse9MkNy9A&modestbranding=1&autohide=1&showinfo=0&controls=1&rel=0&disablekb=1" title="YouTube video demo" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <h1 class="section-title">Khám Phá Sức Mạnh Của OFFICE 365 COPILOT</h1>
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab-button active" data-type="powerpoint">
+                    <i class="tab-icon fas fa-chart-bar"></i>
+                    PowerPoint 
+                </button>
+                <button class="tab-button" data-type="excel">
+                    <i class="tab-icon fas fa-table"></i>
+                    Excel 
+                </button>
+                <button class="tab-button" data-type="word">
+                    <i class="tab-icon fas fa-file-alt"></i>
+                    Word 
+                </button>
+            </div>
+            
+            <!-- Iframe Container -->
+            <div class="iframe-container">
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Đang tải tài liệu...</div>
+                </div>
+                <iframe id="contentFrame" src="https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu" onload="hideLoading()" allow="scripts same-origin forms"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="AI Agents Automation Logo" class="footer-brand-logo">
+                    AI AGENTS AUTOMATION
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Trợ Giúp</a>
+                    <a href="#" class="footer-link">Hỗ Trợ Kỹ Thuật</a>
+                    <a href="#" class="footer-link">Tài Liệu</a>
+                    <a href="#" class="footer-link">Liên Hệ</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 AI AGENTS AUTOMATION. Tất cả các quyền được bảo lưu.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tất cả các nút tab
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        // Xử lý khi bấm vào nút tab
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Loại bỏ class active khỏi tất cả các nút
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Thêm class active vào nút được bấm
+                this.classList.add('active');
+                
+                // Lấy loại tab từ thuộc tính data-type
+                const type = this.getAttribute('data-type');
+                
+                // Thay đổi iframe
+                changeIframe(type);
+            });
+        });
+        
+        // Hàm thay đổi iframe và hiển thị loading
+        function changeIframe(type) {
+            // Hiển thị loading
+            document.getElementById('loading').style.display = 'flex';
+            
+            // URL cho từng loại tab
+            const urls = {
+                powerpoint: "https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu",
+                excel: "https://support.microsoft.com/vi-vn/copilot-excel#section-7_tabControl-1=Yêu_cầu",
+                word: "https://support.microsoft.com/vi-vn/copilot-word#section-7_tabControl-1=Yêu_cầu"
+            };
+            
+            // Lấy iframe và thay đổi src
+            const iframe = document.getElementById("contentFrame");
+            if (urls[type]) {
+                iframe.src = urls[type];
+            }
+        }
+        
+        // Ẩn loading khi iframe đã tải xong
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
