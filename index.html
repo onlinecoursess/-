@@ -446,7 +446,7 @@
                     <div class="spinner"></div>
                     <div class="loading-text">Đang tải tài liệu...</div>
                 </div>
-                <iframe id="contentFrame" src="https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu" onload="hideLoading()" allow="scripts same-origin forms"></iframe>
+                <!-- <iframe id="contentFrame" src="https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu" onload="hideLoading()" allow="scripts same-origin forms"></iframe> -->
             </div>
         </div>
     </main>
@@ -471,8 +471,29 @@
             </div>
         </div>
     </footer>
-
     <script>
+        // Tất cả các nút tab
+        const tabButtons = document.querySelectorAll('.tab-button');
+    
+        // URL cho từng loại tab
+        const urls = {
+            powerpoint: "https://m365.cloud.microsoft/launch/PowerPoint/?auth=1",
+            excel: "https://m365.cloud.microsoft/launch/Excel/?auth=1s",
+            word: "https://m365.cloud.microsoft/launch/Word/?auth=1"
+        };
+    
+        // Xử lý khi bấm vào nút tab
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.getAttribute('data-type'); // Lấy loại tab
+                if (urls[type]) {
+                    window.open(urls[type], '_blank'); // Mở link trong tab mới
+                }
+            });
+        });
+    </script>
+    
+    <!-- <script>
         // Tất cả các nút tab
         const tabButtons = document.querySelectorAll('.tab-button');
         
@@ -516,6 +537,6 @@
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
         }
-    </script>
+    </script> -->
 </body>
 </html> 
