@@ -2,20 +2,26 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI AGENTS AUTOMATION</title>
     <link rel="icon" type="image/jpeg" href="https://i.imgur.com/cS1sOWJ.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0078D4;
-            --primary-hover: #106EBE;
-            --secondary-color: #2B579A;
-            --accent-color: #FFB900;
-            --light-gray: #f3f3f3;
-            --dark-gray: #333333;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #4f46e5;
+            --accent-color: #f59e0b;
+            --light-bg: #f9fafb;
+            --light-card: #ffffff;
+            --dark-text: #1f2937;
+            --medium-text: #4b5563;
+            --light-text: #6b7280;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
+            --border-radius: 0.75rem;
         }
 
         * {
@@ -25,518 +31,1069 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
             line-height: 1.6;
         }
 
-        /* Header styles */
-        .header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-size: 300% 300%;
-            color: white;
-            padding: 20px 0;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            animation: headerGradient 10s ease infinite;
-        }
-        
-        @keyframes headerGradient {
-            0% {background-position: 0% 50%}
-            50% {background-position: 100% 50%}
-            100% {background-position: 0% 50%}
+        /* ===== HEADER & NAVIGATION ===== */
+        .header-wrapper {
+            background-color: #fff;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            pointer-events: none;
-        }
-
-        .container {
-            width: 90%;
+        .navbar {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
         }
 
-        .brand-logo {
+        .logo-img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent-color);
-        }
-
-        .footer-brand-logo {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--accent-color);
         }
 
         .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #ffffff, var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-            letter-spacing: 1px;
-        }
-
-        /* Main content */
-        .main-content {
-            padding: 30px 0;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            margin: 30px auto;
-            max-width: 1200px;
-            width: 90%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--dark-gray);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-        }
-
-        /* Video container styles */
-        .video-container {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-        
-        .video-title {
-            text-align: center;
-            margin-bottom: 15px;
             font-size: 1.5rem;
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-        
-        .responsive-video {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 6px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .responsive-video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.025em;
         }
 
-        /* Tabs navigation */
-        .tabs {
+        .nav-links {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-            position: relative;
+            gap: 2rem;
         }
 
-        .tab-button {
-            padding: 12px 25px;
-            border: none;
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
+        .nav-link {
+            text-decoration: none;
+            color: var(--medium-text);
             font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
             position: relative;
-            overflow: hidden;
-        }
-
-        .tab-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            opacity: 0;
             transition: var(--transition);
-            z-index: -1;
         }
 
-        .tab-button:hover::before, .tab-button.active::before {
-            opacity: 1;
-        }
-
-        .tab-button:hover, .tab-button.active {
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-
-        .tab-button:active {
-            transform: translateY(0);
-        }
-
-        .tab-icon {
-            font-size: 1.2rem;
-        }
-
-        /* Iframe container */
-        .iframe-container {
-            width: 100%;
-            height: 600px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .iframe-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-color);
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            transition: var(--transition);
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Loading indicator */
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            z-index: 5;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(0, 120, 212, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            font-weight: 500;
+        .nav-link:hover, .nav-link.active {
             color: var(--primary-color);
         }
 
-        /* Footer */
-        .footer {
-            background-color: var(--dark-gray);
-            color: white;
-            padding: 25px 0;
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            padding: 5rem 2rem;
             text-align: center;
-            margin-top: 40px;
         }
 
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .footer-logo {
-            font-size: 1.4rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
         }
 
-        .footer-links {
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--medium-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
-        .footer-link {
-            color: #ccc;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
             text-decoration: none;
             transition: var(--transition);
         }
 
-        .footer-link:hover {
+        .btn-primary {
+            background-color: var(--primary-color);
             color: white;
-            text-decoration: underline;
         }
 
-        .copyright {
-            margin-top: 15px;
-            color: #aaa;
-            font-size: 0.9rem;
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        /* Responsive */
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--medium-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .feature-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* ===== DOCUMENTS SECTION ===== */
+        .documents {
+            background-color: #f1f5f9;
+            padding: 5rem 2rem;
+        }
+
+        .documents-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--medium-text);
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            background-color: rgba(37,99,235,0.1);
+        }
+
+        .document-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .document-card {
+            background: var(--light-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 1.75rem;
+            border-top: 4px solid var(--primary-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .document-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .document-title i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background-color: rgba(37, 99, 235, 0.1);
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+
+        .document-content {
+            font-size: 1rem;
+            color: var(--medium-text);
+            margin-bottom: 1.25rem;
+        }
+
+        .document-list {
+            margin-top: 1rem;
+            padding-left: 0.5rem;
+            flex: 1;
+        }
+
+        .document-list li {
+            list-style: none;
+            margin: 0.75rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .document-list li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .document-list li a {
+            text-decoration: none;
+            color: var(--medium-text);
+            font-weight: 500;
+            transition: var(--transition);
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .document-list li a:hover {
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        .document-list li a.featured {
+            position: relative;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .document-list li a.featured:before {
+            content: "⭐";
+            position: absolute;
+            left: -1.25rem;
+            top: 0.25rem;
+        }
+
+        .document-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--light-card);
+            background-color: var(--primary-color);
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .document-button:hover {
+            background-color: var(--primary-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .document-button i {
+            font-size: 0.875rem;
+            transition: transform 0.2s ease;
+        }
+
+        .document-button:hover i {
+            transform: translateX(3px);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-content {
+            position: relative;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--medium-text);
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: rgba(37, 99, 235, 0.2);
+            position: absolute;
+            top: -1.5rem;
+            left: -0.5rem;
+            z-index: -1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--light-text);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .header-content {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
                 flex-direction: column;
-                gap: 15px;
+                padding: 1rem;
+                gap: 0;
+                box-shadow: var(--shadow-md);
             }
 
-            .iframe-container {
-                height: 500px;
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
                 width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
             }
 
-            .tab-button {
-                padding: 10px 15px;
-                font-size: 0.9rem;
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .documents, .features, .testimonials {
+                padding: 3rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .tab-header {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 1rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
-
-        @media (max-width: 576px) {
-            .tab-button {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-
-            .tab-icon {
-                font-size: 1rem;
-            }
-
-            .iframe-container {
-                height: 450px;
-                overflow-x: hidden;
-            }
-            
-            .main-content {
-                width: 95%;
-                padding: 20px 0;
-            }
-            
-            .container {
-                width: 95%;
-                padding: 0 10px;
-            }
-            
-            .responsive-video {
-                padding-bottom: 62%; /* Slightly larger aspect ratio for mobile */
-            }
+         /* ===== VIDEO DEMO SECTION ===== */
+         .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
+
+        .video-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .responsive-video {
+            display: flex;
+            justify-content: center;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--medium-text);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            background-color: rgba(37,99,235,0.1);
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+        }
+
+        .tab-icon {
+            margin-right: 0.5rem;
+        }
+        .tab-center {
+    display: flex;
+    justify-content: center; /* Căn giữa các nút */
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.5rem;
+}
+
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="AI Agents Automation Logo" class="brand-logo">
-                    <div class="logo-text">KHOÁ HỌC MICROSOFT OFFICE 365</div>
-                </div>
+    <!-- Header and Navigation -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="AI Agents Logo" class="logo-img">
+                <span class="logo-text">AI AGENTS</span>
             </div>
-        </div>
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Trang chủ</a>
+                <a href="#features" class="nav-link">Tính năng</a>
+                <a href="#documents" class="nav-link">Tài liệu</a>
+                <a href="#testimonials" class="nav-link">Đánh giá</a>
+                <a href="#contact" class="nav-link">Liên hệ</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Video demo section -->
-            <div class="video-container">
-                <h3 class="video-title">Video Demo</h3>
-                <div class="responsive-video">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5Bse9MkNy9A?autoplay=1&loop=1&playlist=5Bse9MkNy9A&modestbranding=1&autohide=1&showinfo=0&controls=1&rel=0&disablekb=1" title="YouTube video demo" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Tự động hóa công việc với <span>AI Agents</span></h1>
+            <p class="hero-description">Nâng cao hiệu suất làm việc của bạn với các giải pháp tự động hóa thông minh được hỗ trợ bởi trí tuệ nhân tạo tiên tiến.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Bắt đầu miễn phí
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    Xem hướng dẫn
+                </a>
             </div>
-            
-            <h1 class="section-title">Khám Phá Sức Mạnh Của OFFICE 365 COPILOT</h1>
-            
-            <!-- Tabs Navigation -->
-            <div class="tabs">
-                <button class="tab-button active" data-type="powerpoint">
-                    <i class="tab-icon fas fa-chart-bar"></i>
-                    PowerPoint 
-                </button>
-                <button class="tab-button" data-type="excel">
-                    <i class="tab-icon fas fa-table"></i>
-                    Excel 
-                </button>
-                <button class="tab-button" data-type="word">
-                    <i class="tab-icon fas fa-file-alt"></i>
-                    Word 
-                </button>
-            </div>
-            
-            <!-- Iframe Container -->
-            <!-- <div class="iframe-container">
-                <div id="loading" class="loading">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Đang tải tài liệu...</div>
-                </div>
-                <iframe id="contentFrame" src="https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu" onload="hideLoading()" allow="scripts same-origin forms"></iframe>
-            </div> -->
         </div>
-    </main>
+    </section>
+         <!-- Video Demo Section -->
+         <div class="video-container">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/5Bse9MkNy9A?autoplay=1&loop=1&playlist=5Bse9MkNy9A&modestbranding=1&autohide=1&showinfo=0&controls=1&rel=0&disablekb=1" title="YouTube video demo" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-title">
+            <h2>Tính năng nổi bật</h2>
+            <p>Khám phá các công cụ và giải pháp tiên tiến giúp tối ưu hóa quy trình làm việc của bạn</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="feature-title">Trợ lý AI thông minh</h3>
+                <p class="feature-description">Tương tác với trợ lý thông minh được hỗ trợ bởi AI để thực hiện các tác vụ phức tạp và trả lời câu hỏi của bạn.</p>
+                <a href="#" class="feature-link">
+                    Tìm hiểu thêm
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="feature-title">Tự động hóa quy trình</h3>
+                <p class="feature-description">Thiết lập và tự động hóa các quy trình làm việc phức tạp với các công cụ không cần lập trình.</p>
+                <a href="#" class="feature-link">
+                    Tìm hiểu thêm
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Phân tích dữ liệu</h3>
+                <p class="feature-description">Biến đổi dữ liệu thô thành thông tin chi tiết có giá trị với các công cụ phân tích tiên tiến.</p>
+                <a href="#" class="feature-link">
+                    Tìm hiểu thêm
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Tabs Section -->
+<section id="documents" class="documents" style="background: linear-gradient(135deg, #8fc2e4 0%, #dbeafe 100%);">
+    <div class="documents-container">
+        <div class="section-title">
+            <h2>Thực hành ngay tại đây</h2>
+            <p>Khám phá các công cụ AI và tự động hóa để nâng cao hiệu suất làm việc của bạn</p>
+        </div>
+        <div class="tab-center">
+            <button class="tab-button active" data-type="powerpoint">
+                <i class="tab-icon fas fa-chart-bar"></i>
+                PowerPoint 
+            </button>
+            <button class="tab-button" data-type="excel">
+                <i class="tab-icon fas fa-table"></i>
+                Excel 
+            </button>
+            <button class="tab-button" data-type="word">
+                <i class="tab-icon fas fa-file-alt"></i>
+                Word 
+            </button>
+        </div>
+        <div id="tailieu" class="tab-content">
+            <div class="document-section">
+                <!-- Content will be here based on the selected tab -->
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Documents Section -->
+    <section id="documents" class="documents">
+        <div class="documents-container">
+            <div class="section-title">
+                <h2>Tài Liệu Hướng Dẫn</h2>
+                <p>Khám phá các công cụ AI và tự động hóa để nâng cao hiệu suất làm việc của bạn</p>
+            </div>
+            
+            <div class="tab-header">
+                <button class="tab-button active">Tất cả tài liệu</button>
+                <button class="tab-button">Mới nhất</button>
+                <button class="tab-button">Phổ biến nhất</button>
+            </div>
+            
+            <div id="tailieu" class="tab-content">
+                <div class="document-section">
+                    <!-- Thẻ tài liệu 1 -->
+                    <div class="document-card">
+                        <div class="document-title">
+                            <i class="fas fa-edit"></i>
+                            <span>Soạn thảo nội dung</span>
+                        </div>
+                        <p class="document-content">Tạo và chỉnh sửa văn bản dễ dàng với AI, nâng cao năng suất và sáng tạo trong công việc của bạn.</p>
+                        <ul class="document-list">
+                            <li><a href="#">Thêm hình ảnh</a></li>
+                            <li><a href="#">Soạn thảo và thêm nội dung</a></li>
+                            <li><a href="#">Viết lại văn bản</a></li>
+                            <li><a href="#" class="featured">Trò chuyện với Copilot</a></li>
+                            <li><a href="#">Tạo một bản tóm tắt</a></li>
+                        </ul>
+                        <a href="#" class="document-button">
+                            Tìm hiểu thêm về Word
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Thẻ tài liệu 2 -->
+                    <div class="document-card">
+                        <div class="document-title">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Phân tích tài liệu</span>
+                        </div>
+                        <p class="document-content">Hiểu sâu hơn về nội dung với AI phân tích tự động, khám phá thông tin chi tiết và xu hướng trong dữ liệu của bạn.</p>
+                        <ul class="document-list">
+                            <li><a href="#" class="featured">Copilot trong Word trên thiết bị di động</a></li>
+                            <li><a href="#">Kiểm tra ngữ pháp và chính tả</a></li>
+                            <li><a href="#">Chuyển đổi định dạng</a></li>
+                        </ul>
+                        <a href="#" class="document-button">
+                            Khám phá tính năng phân tích
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Thẻ tài liệu 3 -->
+                    <div class="document-card">
+                        <div class="document-title">
+                            <i class="fas fa-robot"></i>
+                            <span>Tự động hóa công việc</span>
+                        </div>
+                        <p class="document-content">Tiết kiệm thời gian với các quy trình làm việc tự động, tập trung vào những việc quan trọng nhất.</p>
+                        <ul class="document-list">
+                            <li><a href="#">Tạo quy trình tự động</a></li>
+                            <li><a href="#" class="featured">Tích hợp với các ứng dụng khác</a></li>
+                            <li><a href="#">Lập lịch tự động</a></li>
+                            <li><a href="#">Xử lý dữ liệu hàng loạt</a></li>
+                        </ul>
+                        <a href="#" class="document-button">
+                            Khám phá công cụ tự động hóa
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Thẻ tài liệu 4 -->
+                    <div class="document-card">
+                        <div class="document-title">
+                            <i class="fas fa-brain"></i>
+                            <span>Sáng tạo với AI</span>
+                        </div>
+                        <p class="document-content">Nâng cao khả năng sáng tạo với các công cụ AI tiên tiến, tạo ra nội dung độc đáo và hấp dẫn.</p>
+                        <ul class="document-list">
+                            <li><a href="#">Tạo hình ảnh với AI</a></li>
+                            <li><a href="#">Viết nội dung tự động</a></li>
+                            <li><a href="#">Viết nội dung tự động</a></li>
+                            <li><a href="#">Tạo video bằng AI</a></li>
+                        </ul>
+                        <a href="#" class="document-button">
+                            Tìm hiểu thêm về sáng tạo với AI
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-title">
+            <h2>Đánh giá của khách hàng</h2>
+            <p>Nghe những phản hồi tích cực từ người dùng về giải pháp tự động hóa của chúng tôi</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "AI Agents đã giúp tôi tiết kiệm rất nhiều thời gian trong công việc hàng ngày. Giờ tôi có thể tập trung vào các quyết định quan trọng hơn."
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="Author 1" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Nguyễn Văn A</h4>
+                        <p>Giám đốc Marketing</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "Công cụ tự động hóa thật tuyệt vời! Tôi không thể tưởng tượng công việc của mình mà không có sự hỗ trợ của AI Agents."
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="Author 2" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Trần Thị B</h4>
+                        <p>Chuyên viên phân tích dữ liệu</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "Dịch vụ chăm sóc khách hàng của AI Agents thực sự xuất sắc. Họ đã hỗ trợ tôi nhanh chóng và hiệu quả."
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="Author 3" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Phạm Minh C</h4>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title">Chuẩn bị để tự động hóa công việc của bạn ngay hôm nay!</h2>
+            <p class="cta-description">Khám phá những cách thức giúp bạn làm việc thông minh hơn và hiệu quả hơn với AI Agents.</p>
+            <a href="#" class="cta-btn">
+                Bắt đầu ngay
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="https://i.imgur.com/cS1sOWJ.jpeg" alt="AI Agents Automation Logo" class="footer-brand-logo">
-                    AI AGENTS AUTOMATION
-                </div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Trợ Giúp</a>
-                    <a href="#" class="footer-link">Hỗ Trợ Kỹ Thuật</a>
-                    <a href="#" class="footer-link">Tài Liệu</a>
-                    <a href="#" class="footer-link">Liên Hệ</a>
-                </div>
-                <div class="copyright">
-                    &copy; 2025 AI AGENTS AUTOMATION. Tất cả các quyền được bảo lưu.
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>AI AGENTS</h3>
+                <p>Đem lại những giải pháp tự động hóa thông minh cho công việc của bạn.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#features">Tính năng</a></li>
+                    <li><a href="#documents">Tài liệu</a></li>
+                    <li><a href="#testimonials">Đánh giá</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên hệ</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@aiagents.com">info@aiagents.com</a></li>
+                    <li><a href="tel:+123456789">+123 456 789</a></li>
+                    <li><a href="#">Địa chỉ văn phòng</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AI AGENTS. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
-        // Tất cả các nút tab
-        const tabButtons = document.querySelectorAll('.tab-button');
+        //trỏ link
+         // Tất cả các nút tab
+         const tabButtons = document.querySelectorAll('.tab-button');
     
-        // URL cho từng loại tab
-        const urls = {
-            powerpoint: "https://m365.cloud.microsoft/launch/PowerPoint/?auth=1",
-            excel: "https://m365.cloud.microsoft/launch/Excel/?auth=1s",
-            word: "https://m365.cloud.microsoft/launch/Word/?auth=1"
-        };
-    
-        // Xử lý khi bấm vào nút tab
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const type = this.getAttribute('data-type'); // Lấy loại tab
-                if (urls[type]) {
-                    window.open(urls[type], '_blank'); // Mở link trong tab mới
-                }
-            });
+    // URL cho từng loại tab
+    const urls = {
+        powerpoint: "https://m365.cloud.microsoft/launch/PowerPoint/?auth=1",
+        excel: "https://m365.cloud.microsoft/launch/Excel/?auth=1s",
+        word: "https://m365.cloud.microsoft/launch/Word/?auth=1"
+    };
+
+    // Xử lý khi bấm vào nút tab
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const type = this.getAttribute('data-type'); // Lấy loại tab
+            if (urls[type]) {
+                window.open(urls[type], '_blank'); // Mở link trong tab mới
+            }
+        });
+    });
+        // Toggle menu for mobile view
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
-    
-    <!-- <script>
-        // Tất cả các nút tab
-        const tabButtons = document.querySelectorAll('.tab-button');
-        
-        // Xử lý khi bấm vào nút tab
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Loại bỏ class active khỏi tất cả các nút
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Thêm class active vào nút được bấm
-                this.classList.add('active');
-                
-                // Lấy loại tab từ thuộc tính data-type
-                const type = this.getAttribute('data-type');
-                
-                // Thay đổi iframe
-                changeIframe(type);
-            });
-        });
-        
-        // Hàm thay đổi iframe và hiển thị loading
-        function changeIframe(type) {
-            // Hiển thị loading
-            document.getElementById('loading').style.display = 'flex';
-            
-            // URL cho từng loại tab
-            const urls = {
-                powerpoint: "https://support.microsoft.com/vi-vn/copilot-powerpoint#section-7_tabControl-1=Yêu_cầu",
-                excel: "https://support.microsoft.com/vi-vn/copilot-excel#section-7_tabControl-1=Yêu_cầu",
-                word: "https://support.microsoft.com/vi-vn/copilot-word#section-7_tabControl-1=Yêu_cầu"
-            };
-            
-            // Lấy iframe và thay đổi src
-            const iframe = document.getElementById("contentFrame");
-            if (urls[type]) {
-                iframe.src = urls[type];
-            }
-        }
-        
-        // Ẩn loading khi iframe đã tải xong
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-        }
-    </script> -->
 </body>
-</html> 
+</html>
