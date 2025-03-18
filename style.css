@@ -1218,3 +1218,158 @@ body {
         justify-content: center;
     }
 }
+/* Phiên bản thay thế với thiết kế hiện đại hơn */
+.practice-apps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 900px;
+    padding: 0 1rem;
+}
+
+.app-button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 180px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    background-color: white;
+    color: #374151;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.7);
+    overflow: hidden;
+}
+
+.app-button .tab-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.4s ease;
+}
+
+.app-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.025) 50%, rgba(0, 0, 0, 0.025) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.app-button:hover::before {
+    opacity: 1;
+}
+
+.app-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    transition: height 0.5s ease;
+}
+
+.app-button:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.app-button:hover .tab-icon {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.app-button:active {
+    transform: translateY(-5px);
+}
+
+/* Màu sắc riêng cho từng nút */
+.powerpoint-btn .tab-icon {
+    color: #d04423;
+}
+
+.powerpoint-btn::after {
+    background-color: #d04423;
+}
+
+.powerpoint-btn:hover {
+    color: #d04423;
+    border-color: rgba(208, 68, 35, 0.2);
+}
+
+.excel-btn .tab-icon {
+    color: #217346;
+}
+
+.excel-btn::after {
+    background-color: #217346;
+}
+
+.excel-btn:hover {
+    color: #217346;
+    border-color: rgba(33, 115, 70, 0.2);
+}
+
+.word-btn .tab-icon {
+    color: #2b579a;
+}
+
+.word-btn::after {
+    background-color: #2b579a;
+}
+
+.word-btn:hover {
+    color: #2b579a;
+    border-color: rgba(43, 87, 154, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .practice-apps {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .app-button {
+        width: 100%;
+        max-width: 280px;
+        height: 150px;
+    }
+    
+    .app-button .tab-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Hiệu ứng hover đẹp hơn */
+.app-button:hover::after {
+    height: 7px;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(-13px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.app-button:hover {
+    animation: floatAnimation 2s ease infinite;
+}
